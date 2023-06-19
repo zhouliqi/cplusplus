@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 template <typename T>
 class Sort final {
 private:
@@ -74,6 +75,9 @@ private:
     }
 
 public:
+    /**
+     * 打印数组的信息
+     */
     void print(const T& array, const bool flag, const string& info) {
         if (!flag) {
             return;
@@ -83,6 +87,51 @@ public:
             cout << x << " ";
         }
         cout << "\n";
+    }
+
+    /**
+     * 冒泡排序
+     */
+    void bubbleSort(T& array) {
+        int n = array.size();
+        for (int i = 0; i < n - 1; ++i) {
+            for (int j = 0; j < n - i - 1; ++j) {
+                if (array[j] > array[j + 1]) {
+                    swap(array[j], array[j + 1]);
+                }
+            }
+        }
+    }
+
+    /**
+     * 简单选择排序
+     */
+    void selectionSort(T& array) {
+        int n = array.size();
+        for (int i = 0; i < n - 1; ++i) {
+            int minIdx = i;
+            for (int j = i + 1; j < n; ++j) {
+                if (array[j] < array[minIdx]) {
+                    minIdx = j;
+                }
+            }
+            swap(array[i], array[minIdx]);
+        }
+    }
+
+    /**
+     * 直接插入排序
+     */
+    void insertionSort(T& array) {
+        int n = array.size();
+        for (int i = 1; i < n; ++i) {
+            int j = i - 1, tmp = array[i];
+            while (j >= 0 && array[j] > tmp) {
+                array[j + 1] = array[j];
+                --j;
+            }
+            array[j + 1] = tmp;
+        }
     }
 
     /**
